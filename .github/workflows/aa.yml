@@ -62,6 +62,6 @@ jobs:
           plugin_projects_limit: 4
           plugin_rss: yes
           plugin_rss_limit: 4
-          plugin_rss_source: https://homeboyc.cn/index.xml
+          # plugin_rss_source: https://homeboyc.cn/index.xml
           
         
