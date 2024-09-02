@@ -1,10 +1,9 @@
-
+## 😊 Visitors' count of this page：
 ![counter](https://komarev.com/ghpvc/?username=Li-can-cheng)
 
 
 
 ## 😅 GitHub contribution：
-
 
 
 
