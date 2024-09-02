@@ -19,7 +19,7 @@ jobs:
           retries_delay: 300
           retries_output_action: 5
           retries_delay_output_action: 120
-          user: asjdf
+          user: Li-can-cheng
           template: classic
           base: activity, community, repositories, metadata
           base_hireable: yes
