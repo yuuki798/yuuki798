@@ -7,4 +7,6 @@
 
 
 
-<img src="/github-metrics.svg" alt="Metrics" width="100%">
+<picture>
+    <img alt="GitHub stats" src="https://github.com/Li-can-cheng/Li-can-cheng/raw/main/github-metrics.svg" width="100%" >
+</picture>
