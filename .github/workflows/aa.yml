@@ -1,65 +1,94 @@
+# name: Metrics
+# on:
+#   # Schedule daily updates
+#   schedule: [{cron: "0 0 * * *"}]
+#   # (optional) Run workflow manually
+#   workflow_dispatch:
+#   # (optional) Run workflow when pushing on master/main
+#   push: {branches: ["master", "main"]}
+# jobs:
+#   github-metrics:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: write
+#     steps:
+#       - uses: lowlighter/metrics@latest
+#         with:
+#           token: ${{ secrets.METRICS_TOKEN }}
+#           retries: 3
+#           retries_delay: 300
+#           retries_output_action: 5
+#           retries_delay_output_action: 120
+#           user: yuuki798
+#           template: classic
+#           base: activity, community, repositories, metadata
+#           base_hireable: yes
+#           config_display: large
+#           config_timezone: Asia/Shanghai
+#           plugin_achievements: yes
+#           plugin_achievements_display: detailed
+#           plugin_achievements_secrets: yes
+#           plugin_achievements_threshold: B
+#           plugin_activity: yes
+#           plugin_activity_days: 14
+#           plugin_activity_filter: all
+#           plugin_activity_limit: 5
+#           plugin_activity_load: 300
+#           plugin_activity_visibility: all
+#           plugin_followup: yes
+#           plugin_followup_archived: yes
+#           plugin_followup_sections: repositories
+#           plugin_habits: yes
+#           plugin_habits_charts_type: classic
+#           plugin_habits_days: 14
+#           plugin_habits_facts: yes
+#           plugin_habits_from: 200
+#           plugin_habits_languages_limit: 8
+#           plugin_habits_languages_threshold: 0%
+#           plugin_isocalendar: yes
+#           plugin_isocalendar_duration: full-year
+#           plugin_languages: yes
+#           plugin_languages_ignored: >-
+#             html, css, tex, less, dockerfile, makefile, qmake, lex, cmake, shell,
+#             gnuplot
+#           plugin_languages_indepth: yes
+#           plugin_languages_details: lines, bytes-size, percentage
+#           plugin_languages_limit: 8
+#           plugin_languages_sections: recently-used
+#           plugin_languages_analysis_timeout: 15
+#           plugin_projects: yes
+#           plugin_projects_limit: 4
+#           # plugin_rss: yes
+#           # plugin_rss_limit: 4
+#           # plugin_rss_source: https://homeboyc.cn/index.xml
+
 name: Metrics
 on:
-  # Schedule daily updates
-  schedule: [{cron: "0 0 * * *"}]
-  # (optional) Run workflow manually
+  # Schedule updates (each hour)
+  schedule: [{cron: "0 * * * *"}]
+  # Lines below let you run workflow manually and on each commit
   workflow_dispatch:
-  # (optional) Run workflow when pushing on master/main
   push: {branches: ["master", "main"]}
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: lowlighter/metrics@latest
+      - uses: ilanRosenbaum/metrics@master
         with:
+          # Your GitHub token
           token: ${{ secrets.METRICS_TOKEN }}
-          retries: 3
-          retries_delay: 300
-          retries_output_action: 5
-          retries_delay_output_action: 120
+            
+          # Options
           user: yuuki798
           template: classic
           base: activity, community, repositories, metadata
-          base_hireable: yes
-          config_display: large
-          config_timezone: Asia/Shanghai
-          plugin_achievements: yes
-          plugin_achievements_display: detailed
-          plugin_achievements_secrets: yes
-          plugin_achievements_threshold: B
-          plugin_activity: yes
-          plugin_activity_days: 14
-          plugin_activity_filter: all
-          plugin_activity_limit: 5
-          plugin_activity_load: 300
-          plugin_activity_visibility: all
-          plugin_followup: yes
-          plugin_followup_archived: yes
-          plugin_followup_sections: repositories
-          plugin_habits: yes
-          plugin_habits_charts_type: classic
-          plugin_habits_days: 14
-          plugin_habits_facts: yes
-          plugin_habits_from: 200
-          plugin_habits_languages_limit: 8
-          plugin_habits_languages_threshold: 0%
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
+          config_padding: 10%
+          config_timezone: America/Chicago
           plugin_languages: yes
-          plugin_languages_ignored: >-
-            html, css, tex, less, dockerfile, makefile, qmake, lex, cmake, shell,
-            gnuplot
-          plugin_languages_indepth: yes
-          plugin_languages_details: lines, bytes-size, percentage
-          plugin_languages_limit: 8
-          plugin_languages_sections: recently-used
-          plugin_languages_analysis_timeout: 15
-          plugin_projects: yes
-          plugin_projects_limit: 4
-          # plugin_rss: yes
-          # plugin_rss_limit: 4
-          # plugin_rss_source: https://homeboyc.cn/index.xml
-          
+          plugin_languages_indepth_custom: ilanRosenbaum/rooms
+          plugin_languages_sections: most-used
+          plugin_languages_details: lines
+          plugin_languages_colors: github
+          plugin_languages_indepth: true
+          debug: true
         
